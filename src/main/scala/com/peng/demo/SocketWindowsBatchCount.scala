@@ -10,6 +10,7 @@ object SocketWindowsBatchCount {
     print(ClassLoader.getSystemResource(""))
     val outPut = ClassLoader.getSystemResource("") + "output.txt"
     val text = env.readTextFile(ClassLoader.getSystemResource("") + "word.txt")
+    //各中算子的操作和返回值
     val counts = text.flatMap(_.toLowerCase.split("\\W+"))
       .filter(_.nonEmpty)
       .map((_, 1)).groupBy(0)
