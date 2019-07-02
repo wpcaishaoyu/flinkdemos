@@ -5,7 +5,7 @@ import org.apache.flink.streaming.api.scala._
 object TextWordCount {
   def main(args: Array[String]): Unit = {
     //first 获取流的执行环境
-    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.createLocalEnvironment()
+    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     //获取数据
     print(ClassLoader.getSystemResource(""))
     val data = env.readTextFile(ClassLoader.getSystemResource("") + "word.txt")

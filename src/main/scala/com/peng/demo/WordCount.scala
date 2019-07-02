@@ -10,7 +10,7 @@ object WordCount {
     // the port to connect to
 
     // get the execution environment
-    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.createLocalEnvironment()
+    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
     // get input data by connecting to the socket
     val text = env.socketTextStream("localhost", 8001, '\n')

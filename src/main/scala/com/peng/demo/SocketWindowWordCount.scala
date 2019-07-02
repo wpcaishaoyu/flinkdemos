@@ -5,7 +5,7 @@ import org.apache.flink.streaming.api.windowing.time.Time
 
 object SocketWindowWordCount {
   def main(args: Array[String]): Unit = {
-    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.createLocalEnvironment()
+    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     // get input data by connecting to the socket
     val text = env.socketTextStream("localhost", 9000, '\n')
     // parse the data, group it, window it, and aggregate the counts
@@ -17,7 +17,7 @@ object SocketWindowWordCount {
       .timeWindow(Time.seconds(5), Time.seconds(1))
       //      .sum("count")
       .reduce((a, b) => WordWithCount(a.word, a.count + b.count))
-    windowCounts.print().setParallelism(2)
+    windowCounts.print().setParallelism(1)
     //提交job
     env.execute("socket windows word count")
   }
